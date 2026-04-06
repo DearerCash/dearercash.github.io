@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avalon Air — Air Conditioning Specialists, Sydney Northern Beaches</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --dark: #0a0a0a;
+  --dark-2: #111111;
+  --dark-3: #1a1a1a;
+  --mid: #2a2a2a;
+  --border: rgba(255,255,255,0.08);
+  --gold: #C9A96E;
+  --gold-light: #e0c99a;
+  --white: #f5f2ed;
+  --muted: rgba(245,242,237,0.5);
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--dark);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Custom cursor */
+.cursor {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease;
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(201,169,110,0.4);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.08s ease, width 0.2s, height 0.2s, border-color 0.2s;
+  transform: translate(-50%, -50%);
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4rem;
+  transition: background 0.4s, padding 0.4s;
+}
+nav.scrolled {
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(12px);
+  padding: 1.2rem 4rem;
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid rgba(201,169,110,0.4);
+  padding: 0.6rem 1.4rem;
+  transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--gold); color: var(--dark); }
+
+/* HERO */
+.hero {
+  height: 100vh;
+  min-height: 700px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 4rem 6rem;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0d1117 0%, #1a1f2e 50%, #0d1117 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Photo placeholder */
+.hero-photo-placeholder {
+  position: absolute;
+  inset: 0;
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border: 1px dashed rgba(201,169,110,0.2);
+}
+.hero-photo-placeholder .ph-icon {
+  width: 60px; height: 60px;
+  border: 1px solid rgba(201,169,110,0.3);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+}
+.hero-photo-placeholder p {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(201,169,110,0.4);
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.3) 60%, transparent 100%);
+}
+.hero-content { position: relative; z-index: 2; max-width: 800px; }
+.hero-tag {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.hero-tag::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 300;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+.hero h1 em { font-style: italic; color: var(--gold-light); }
+.hero-sub {
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+}
+.hero-actions { display: flex; gap: 1.5rem; align-items: center; }
+.btn-primary {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dark);
+  background: var(--gold);
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+.btn-ghost {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.btn-ghost:hover { color: var(--gold); }
+.hero-phone {
+  position: absolute;
+  right: 4rem;
+  bottom: 6rem;
+  z-index: 2;
+  text-align: right;
+}
+.hero-phone a {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  display: block;
+  transition: color 0.2s;
+}
+.hero-phone a:hover { color: var(--gold); }
+.hero-phone span {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* STAT BAR */
+.stat-bar {
+  background: var(--dark-2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  gap: 0;
+}
+.stat-item {
+  flex: 1;
+  max-width: 260px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.stat-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* SECTION BASE */
+section { padding: 8rem 4rem; }
+.section-tag {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.section-tag::before {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: var(--gold);
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+.section-title em { font-style: italic; color: var(--gold-light); }
+
+/* SERVICES */
+.services { background: var(--dark); }
+.services-intro {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: end;
+  margin-bottom: 5rem;
+}
+.services-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.9;
+  max-width: 420px;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.service-card {
+  background: var(--dark-2);
+  padding: 2.5rem 2rem;
+  transition: background 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.4s ease;
+}
+.service-card:hover { background: var(--dark-3); }
+.service-card:hover::after { width: 100%; }
+.service-num {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--border);
+  display: block;
+  margin-bottom: 1rem;
+  transition: color 0.3s;
+}
+.service-card:hover .service-num { color: rgba(201,169,110,0.15); }
+.service-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+.service-card p {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* ABOUT / SPLIT */
+.about-split {
+  background: var(--dark-2);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+  padding: 0;
+}
+.about-image {
+  position: relative;
+  min-height: 500px;
+  background: var(--mid);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border-right: 1px solid var(--border);
+}
+.about-image .ph-icon {
+  width: 60px; height: 60px;
+  border: 1px solid rgba(201,169,110,0.3);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+}
+.about-image p {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(201,169,110,0.4);
+}
+.about-content {
+  padding: 6rem 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.about-content .section-title { margin-bottom: 2rem; }
+.about-body {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.9;
+  margin-bottom: 2.5rem;
+}
+.about-values { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; }
+.value-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.value-item::before {
+  content: '';
+  display: block;
+  width: 20px; height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* PROJECTS */
+.projects { background: var(--dark); }
+.projects-header {
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.projects-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.project-card {
+  position: relative;
+  background: var(--dark-3);
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+.project-card.large { grid-column: span 1; aspect-ratio: 3/4; }
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.project-card:hover .project-overlay { opacity: 1; }
+.project-label {
+  position: absolute;
+  bottom: 1.5rem; left: 1.5rem;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.3s;
+}
+.project-card:hover .project-label { opacity: 1; transform: translateY(0); }
+.project-label h4 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--white);
+}
+.project-label span {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.ph-project {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  text-align: center;
+}
+.ph-project .ph-icon {
+  width: 50px; height: 50px;
+  border: 1px solid rgba(201,169,110,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+}
+.ph-project p {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(201,169,110,0.3);
+}
+
+/* TESTIMONIALS */
+.testimonials {
+  background: var(--dark-2);
+  text-align: center;
+}
+.testimonials-inner { max-width: 800px; margin: 0 auto; }
+.testimonials .section-tag { justify-content: center; }
+.testimonials .section-tag::before { display: none; }
+.testimonial-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--white);
+  margin-bottom: 2rem;
+}
+.testimonial-author {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.testimonial-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 2.5rem;
+}
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition: background 0.2s;
+  border: none;
+}
+.dot.active { background: var(--gold); }
+
+/* PARTNERS */
+.partners {
+  background: var(--dark);
+  padding: 5rem 4rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.partners-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+.partners-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  padding-right: 3rem;
+  border-right: 1px solid var(--border);
+}
+.partners-logos {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.partner-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: rgba(245,242,237,0.25);
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+.partner-name:hover { color: var(--gold-light); }
+
+/* DAIKIN / CREDENTIALS */
+.credentials {
+  background: var(--dark-3);
+  padding: 6rem 4rem;
+}
+.credentials-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.cred-text .section-title { margin-bottom: 1rem; }
+.cred-body {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
+}
+.cred-badges { display: flex; gap: 1.5rem; }
+.cred-badge {
+  border: 1px solid var(--border);
+  padding: 1rem 1.5rem;
+  text-align: center;
+}
+.cred-badge .badge-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+}
+.cred-badge .badge-label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-top: 4px;
+}
+.cred-logos { display: flex; flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+.cred-logo-item {
+  border: 1px solid var(--border);
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+.cred-logo-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: 0.05em;
+}
+.cred-logo-sub {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* CONTACT */
+.contact { background: var(--dark); }
+.contact-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+}
+.contact-info { }
+.contact-info .section-title { margin-bottom: 2rem; }
+.contact-details { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2.5rem; }
+.contact-detail { display: flex; flex-direction: column; gap: 4px; }
+.contact-detail .label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.contact-detail a, .contact-detail p {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.contact-detail a:hover { color: var(--gold); }
+.contact-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: var(--dark-2);
+  border: 1px solid var(--border);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  padding: 0.9rem 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  resize: none;
+  -webkit-appearance: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--gold); }
+.form-group select option { background: var(--dark-2); }
+.form-submit {
+  background: var(--gold);
+  color: var(--dark);
+  border: none;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  cursor: none;
+  transition: background 0.2s, transform 0.2s;
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+.form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+/* FOOTER */
+footer {
+  background: var(--dark-2);
+  border-top: 1px solid var(--border);
+  padding: 3rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: 0.02em;
+}
+.footer-logo span { color: var(--gold); }
+.footer-copy {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.footer-links { display: flex; gap: 2rem; }
+.footer-links a {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--gold); }
+
+/* ANIMATIONS */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+  nav { padding: 1.5rem 2rem; }
+  nav.scrolled { padding: 1rem 2rem; }
+  .nav-links { display: none; }
+  section { padding: 5rem 2rem; }
+  .hero { padding: 0 2rem 4rem; }
+  .hero-phone { right: 2rem; bottom: 4rem; }
+  .services-intro { grid-template-columns: 1fr; gap: 2rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .about-split { grid-template-columns: 1fr; }
+  .about-image { min-height: 300px; }
+  .about-content { padding: 3rem 2rem; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .credentials-inner { grid-template-columns: 1fr; }
+  .projects-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .stat-bar { flex-wrap: wrap; }
+  .stat-item { min-width: 50%; border-right: none; border-bottom: 1px solid var(--border); }
+  footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+  .partners-inner { flex-direction: column; gap: 2rem; }
+  .partners-label { border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; padding-bottom: 1rem; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Avalon <span>Air</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:0414944894" class="nav-cta">0414 944 894</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-photo-placeholder">
+      <div class="ph-icon">📷</div>
+      <p>Hero background photo — replace with a premium interior/installation image</p>
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content reveal">
+    <div class="hero-tag">Sydney Northern Beaches · Est. 2002</div>
+    <h1>Precision Climate<br><em>Control.</em></h1>
+    <p class="hero-sub">Sydney's Northern Beaches air conditioning specialists. Over 22 years of delivering exceptional residential and commercial installations.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Request a Quote</a>
+      <a href="#services" class="btn-ghost">View Services →</a>
+    </div>
+  </div>
+  <div class="hero-phone">
+    <span>Call us today</span>
+    <a href="tel:0414944894">0414 944 894</a>
+  </div>
+</section>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="stat-item reveal">
+    <span class="stat-num">22+</span>
+    <span class="stat-label">Years experience</span>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num">5yr</span>
+    <span class="stat-label">Daikin warranty</span>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num">100%</span>
+    <span class="stat-label">Licensed & insured</span>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num">Lic.</span>
+    <span class="stat-label">No. 294237c</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-intro">
+    <div>
+      <div class="section-tag reveal">What we do</div>
+      <h2 class="section-title reveal">Complete Climate<br><em>Solutions</em></h2>
+    </div>
+    <p class="services-desc reveal">We are committed to providing professional air conditioning solutions to both residential and commercial customers. We continually strive for excellence in sales, design and installation.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-num">01</span>
+      <h3>Split System Air Conditioning</h3>
+      <p>Efficient, targeted cooling and heating for individual rooms. The most versatile solution for residential spaces.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">02</span>
+      <h3>Ducted Air Conditioning</h3>
+      <p>Whole-home climate control with discreet ceiling vents. The premium choice for seamless comfort throughout.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">03</span>
+      <h3>Multi System Air Conditioning</h3>
+      <p>A single outdoor unit powering multiple indoor units across different zones — efficient and elegant.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">04</span>
+      <h3>Bulkhead Systems</h3>
+      <p>Architecturally integrated into your ceiling cavity, bulkhead systems deliver powerful performance with minimal visual impact.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">05</span>
+      <h3>Ceiling Mounted Cassettes</h3>
+      <p>Four-way airflow distribution from a central ceiling position. Ideal for open-plan living and commercial spaces.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">06</span>
+      <h3>Construction & Renovation</h3>
+      <p>Seamless integration during the build phase. We work alongside your architect and builder for the perfect outcome.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about-split" id="about">
+  <div class="about-image">
+    <div class="ph-icon">📷</div>
+    <p>Team or installation photo</p>
+  </div>
+  <div class="about-content">
+    <div class="section-tag reveal">About us</div>
+    <h2 class="section-title reveal">Northern Beaches'<br><em>Trusted Specialists</em></h2>
+    <p class="about-body reveal">For over 22 years, Avalon Air has been the Northern Beaches' most trusted air conditioning partner. From Palm Beach to Manly, we've built a reputation on quality workmanship, honest advice, and exceptional service that outlasts every installation.</p>
+    <div class="about-values reveal">
+      <div class="value-item">Quality Customer Service</div>
+      <div class="value-item">Business Excellence</div>
+      <div class="value-item">Respect & Social Responsibility</div>
+      <div class="value-item">Licensed & Fully Insured</div>
+    </div>
+    <a href="#contact" class="btn-primary reveal">Work With Us</a>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="projects-header">
+    <div>
+      <div class="section-tag reveal">Our work</div>
+      <h2 class="section-title reveal">Selected <em>Projects</em></h2>
+    </div>
+    <a href="#contact" class="btn-ghost reveal">View all projects →</a>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="ph-project">
+        <div class="ph-icon">📷</div>
+        <p>Split systems project photo</p>
+      </div>
+      <div class="project-overlay"></div>
+      <div class="project-label">
+        <h4>Split Systems</h4>
+        <span>Residential · Palm Beach</span>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div class="ph-project">
+        <div class="ph-icon">📷</div>
+        <p>Ducted systems project photo</p>
+      </div>
+      <div class="project-overlay"></div>
+      <div class="project-label">
+        <h4>Ducted Systems</h4>
+        <span>Residential · Whale Beach</span>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div class="ph-project">
+        <div class="ph-icon">📷</div>
+        <p>Bulkhead systems project photo</p>
+      </div>
+      <div class="project-overlay"></div>
+      <div class="project-label">
+        <h4>Bulkhead Systems</h4>
+        <span>Residential · Avalon</span>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div class="ph-project">
+        <div class="ph-icon">📷</div>
+        <p>Commercial project photo</p>
+      </div>
+      <div class="project-overlay"></div>
+      <div class="project-label">
+        <h4>Commercial</h4>
+        <span>Commercial · Pittwater</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <div class="section-tag reveal">Client words</div>
+    <div id="testimonial-display">
+      <p class="testimonial-text reveal">"Avalon Air have been exceptional from quote to completion. Their attention to detail and knowledge of Daikin systems is second to none on the Northern Beaches."</p>
+      <p class="testimonial-author reveal">— Northern Beaches Homeowner</p>
+    </div>
+    <div class="testimonial-dots">
+      <button class="dot active" onclick="setTestimonial(0)"></button>
+      <button class="dot" onclick="setTestimonial(1)"></button>
+      <button class="dot" onclick="setTestimonial(2)"></button>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<div class="partners">
+  <div class="partners-inner">
+    <span class="partners-label">Trusted by</span>
+    <div class="partners-logos">
+      <span class="partner-name">Palm Beach SLSC</span>
+      <span class="partner-name">Manly Sea Eagles</span>
+      <span class="partner-name">RMYC</span>
+      <span class="partner-name">Local Businesses</span>
+    </div>
+  </div>
+</div>
+
+<!-- CREDENTIALS -->
+<section class="credentials">
+  <div class="credentials-inner">
+    <div class="cred-text">
+      <div class="section-tag reveal">Why Daikin</div>
+      <h2 class="section-title reveal">A <em>Sensitive</em><br>Smart Choice</h2>
+      <p class="cred-body reveal">Approved by the National Asthma Council Australia, Daikin air purifiers and split systems are authorised to display the Sensitive Choice butterfly symbol — the mark of products that are better for people with asthma and allergies.</p>
+      <div class="cred-badges reveal">
+        <div class="cred-badge">
+          <span class="badge-num">5yr</span>
+          <span class="badge-label">Warranty</span>
+        </div>
+        <div class="cred-badge">
+          <span class="badge-num">#1</span>
+          <span class="badge-label">Daikin dealer</span>
+        </div>
+        <div class="cred-badge">
+          <span class="badge-num">A+</span>
+          <span class="badge-label">Energy rated</span>
+        </div>
+      </div>
+    </div>
+    <div class="cred-logos reveal">
+      <div class="cred-logo-item">
+        <span class="cred-logo-name">Daikin</span>
+        <span class="cred-logo-sub">Authorised dealer · 5-year warranty</span>
+      </div>
+      <div class="cred-logo-item">
+        <span class="cred-logo-name">Sensitive Choice</span>
+        <span class="cred-logo-sub">National Asthma Council approved</span>
+      </div>
+      <div class="cred-logo-item">
+        <span class="cred-logo-name">Lic. No. 294237c</span>
+        <span class="cred-logo-sub">Fully licensed & insured</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <div class="section-tag reveal">Get in touch</div>
+      <h2 class="section-title reveal">Request<br>a <em>Quote</em></h2>
+      <div class="contact-details reveal">
+        <div class="contact-detail">
+          <span class="label">Phone</span>
+          <a href="tel:0414944894">0414 944 894</a>
+        </div>
+        <div class="contact-detail">
+          <span class="label">Email</span>
+          <a href="mailto:info@avalonair.com.au">info@avalonair.com.au</a>
+        </div>
+        <div class="contact-detail">
+          <span class="label">Address</span>
+          <p>PO Box 844, Avalon NSW 2107</p>
+        </div>
+        <div class="contact-detail">
+          <span class="label">Service area</span>
+          <p>Sydney Northern Beaches</p>
+        </div>
+      </div>
+    </div>
+    <form class="contact-form reveal" onsubmit="return false;">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First name</label>
+          <input type="text" placeholder="John">
+        </div>
+        <div class="form-group">
+          <label>Last name</label>
+          <input type="text" placeholder="Smith">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="john@email.com">
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" placeholder="0400 000 000">
+      </div>
+      <div class="form-group">
+        <label>Service required</label>
+        <select>
+          <option value="">Select a service</option>
+          <option>Split System</option>
+          <option>Ducted System</option>
+          <option>Multi System</option>
+          <option>Bulkhead</option>
+          <option>Ceiling Cassette</option>
+          <option>Commercial</option>
+          <option>Service / Repair</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea rows="4" placeholder="Tell us about your project..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Enquiry</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Avalon <span>Air</span></div>
+  <div class="footer-copy">© 2026 Avalon Air Pty Ltd · Lic No. 294237c</div>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="tel:0414944894">0414 944 894</a>
+  </div>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+function animCursor() {
+  cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+document.querySelectorAll('a, button, .service-card, .project-card, .partner-name').forEach(el => {
+  el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.borderColor = 'rgba(201,169,110,0.7)'; });
+  el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'rgba(201,169,110,0.4)'; });
+});
+
+// Navbar scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// Reveal on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Testimonials
+const testimonials = [
+  { text: '"Avalon Air have been exceptional from quote to completion. Their attention to detail and knowledge of Daikin systems is second to none on the Northern Beaches."', author: '— Northern Beaches Homeowner' },
+  { text: '"They installed our ducted system during our renovation and it was seamless. Professional, tidy and the system has been perfect. Highly recommend."', author: '— Whale Beach Resident' },
+  { text: '"We\'ve used Avalon Air for our commercial premises for years. Responsive, reliable and the quality of their work is always outstanding."', author: '— Local Business Owner' }
+];
+function setTestimonial(i) {
+  const t = testimonials[i];
+  document.querySelector('.testimonial-text').textContent = t.text;
+  document.querySelector('.testimonial-author').textContent = t.author;
+  document.querySelectorAll('.dot').forEach((d, j) => d.classList.toggle('active', j === i));
+}
+let curr = 0;
+setInterval(() => { curr = (curr + 1) % testimonials.length; setTestimonial(curr); }, 6000);
+</script>
+</body>
+</html>
